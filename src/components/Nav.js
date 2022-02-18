@@ -1,16 +1,26 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, {Component } from 'react';
+import { NavLink} from 'react-router-dom';
 
-const Nav = ({onSearch}) => {
-    return (
-        <nav className="main-nav">
-            <ul>
-            <li><NavLink to={ () => onSearch('cats')}>Cats</NavLink></li>
-            <li><NavLink to={ () => onSearch('dogs')}>Dogs</NavLink></li>
-            <li><NavLink to={ () => onSearch('computers')}>Computers</NavLink></li>
-            </ul>
-        </nav>
-    )
+class Nav extends Component{
+    handleClick(val) {
+        this.setState({
+            value: val
+        })
+    }
+    handleSubmit (value) {
+        this.props.onSearch(value)
+    }
+    render () {
+        return (
+            <nav className="main-nav">
+                <ul>
+                <li><NavLink to="/bikes" onClick={() => this.handleSubmit("bikes")}>Bikes</NavLink></li>
+                <li><NavLink to="/dogs" onClick={() => this.handleSubmit("dogs")}>Dogs</NavLink></li>
+                <li><NavLink to="/computers" onClick={() => this.handleSubmit("computers")}>Computers</NavLink></li>
+                </ul>
+            </nav>
+        )
+    }
 }
 
 export default Nav
