@@ -45,6 +45,9 @@ class App extends Component {
         <Route  exact path="/">
           <ItemsList data={this.state.data} value={this.state.value} /> 
         </Route>
+        <Route  exact path="/:name">
+          <ItemsList data={this.state.data} value={this.state.value} /> 
+        </Route>
         <Route component={NotFound}/>
         </Switch>
       </div>
