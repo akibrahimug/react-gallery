@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import SearchBar from './components/SearchBar';
 import Config from "./components/config";
 import axios from 'axios';
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom"
+import {BrowserRouter as Router, Route, Switch, Redirect} from "react-router-dom"
 import ItemsList from './components/ItemsList';
 import NotFound from "./components/NotFound";
 // import NavItems from "./components/NavItems"
@@ -43,11 +43,18 @@ class App extends Component {
         <Nav onSearch={this.fetchData} value={this.state.value}/>
         <Switch>
         <Route  exact path="/">
-          <ItemsList  data={this.state.data} value={this.state.value} /> 
+          <Redirect to="/search/bikes"/> 
         </Route>
-        <Route  exact path="/search/:name">
-          <ItemsList firstMount={this.fetchData} data={this.state.data} value={this.state.value} /> 
-        </Route>
+        <Route  exact path="/search/:name" render={props => (
+          <ItemsList 
+          firstMount={this.fetchData} 
+          data={this.state.data} 
+          value={this.state.value} 
+          // Spread to get the match object that contains the name property
+            {...props}
+          /> 
+        )}
+        />
         <Route component={NotFound}/>
         </Switch>
       </div>
