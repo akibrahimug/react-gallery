@@ -28,9 +28,9 @@ class App extends Component {
     
   }
 
-  componentDidMount() {
-    this.fetchData("cat")
-  }
+  // componentDidMount() {
+  //   this.fetchData("cat")
+  // }
 
 
   render () {
@@ -43,10 +43,10 @@ class App extends Component {
         <Nav onSearch={this.fetchData} value={this.state.value}/>
         <Switch>
         <Route  exact path="/">
-          <ItemsList data={this.state.data} value={this.state.value} /> 
+          <ItemsList  data={this.state.data} value={this.state.value} /> 
         </Route>
         <Route  exact path="/search/:name">
-          <ItemsList data={this.state.data} value={this.state.value} /> 
+          <ItemsList firstMount={this.fetchData} data={this.state.data} value={this.state.value} /> 
         </Route>
         <Route component={NotFound}/>
         </Switch>
