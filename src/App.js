@@ -50,7 +50,6 @@ class App extends Component {
           firstMount={this.fetchData} 
           data={this.state.data} 
           value={this.state.value} 
-          // Spread to get the match object that contains the name property
             {...props}
           /> 
         )}
